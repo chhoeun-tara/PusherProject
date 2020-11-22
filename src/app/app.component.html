@@ -1,52 +1,104 @@
-<div class="container">
-  <h1 class="text-center">
+<div class="jumbotron jumbotro-fluid">
+  <h3 class="display-4 text-center bolder">
+    <img src="../assets/img/logo.jpg" class="img">
     Order Item
-  </h1>
-  <div class="row">
-    <div class="col-md-6">
-      <label>Table : </label>
-      <input class="form-control">
+  </h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Table : </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">#</span>
+              </div>
+              <input class="form-control" [(ngModel)]="order.table">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group btn-enterTable">
+              <button class="btn btn-sm btn-primary" (click)="getData()">Enter Table</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Item Name : </label>
+            <input class="form-control" [(ngModel)]="newItem.itemName" [readonly]="!isEnteredTable">
+          </div>
+          <div class="col-md-6">
+            <label>QTY : </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">#</span>
+              </div>
+              <input class="form-control" [(ngModel)]="newItem.qty" (keyup)="totalAmount()"
+                [readonly]="!isEnteredTable">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label>Price : </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">#</span>
+              </div>
+              <input class="form-control" [(ngModel)]="newItem.price" (keyup)="totalAmount()"
+                [readonly]="!isEnteredTable">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>Amount : </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">#</span>
+              </div>
+              <input class="form-control" [(ngModel)]="newItem.amount" readonly>
+            </div>
+          </div>
+        </div>
+
+        <table class="table table-hover" id="order-table">
+          <thead class="thead-dark">
+            <tr>
+              <th>Item Name</th>
+              <th>QTY</th>
+              <th>Price</th>
+              <th>Amount</th>
+              <th>
+                <a class="btn btn-sm btn-primary text-white" (click)="insertItem()">Insert Item</a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="order?.detail?.length === 0">
+              <td class="font-italic">
+                No item selected
+              </td>
+            </tr>
+            <tr *ngFor="let item of order?.detail; let i=index" (click)="editItem(i)">
+              <td>{{item.itemName}}</td>
+              <td>{{item.qty}}</td>
+              <td>{{item.price}}</td>
+              <td>{{item.amount}}</td>
+              <td>
+                <button class="btn btn-sm btn-danger" (click)="removeItem(i)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-sm btn-primary float-right" (click)="placeOrder()">Place Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <label>Item Name : </label>
-      <input class="form-control">
-    </div>
-    <div class="col-md-6">
-      <label>Value : </label>
-      <input class="form-control">
-    </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col-md-12">
-      <button class="btn btn-primary float-right" (click)="placeOrder()">Place Order</button>
-    </div>
-  </div>
-  <table class="table mt-2">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
 </div>
