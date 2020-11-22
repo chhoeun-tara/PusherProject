@@ -1,0 +1,35 @@
+<h3 class="display-4 text-center bolder">
+  <img src="../../assets/img/report.png" class="img">
+  Report Sale
+</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <button class="btn btn-sm btn-dark float-right mb-2" routerLink="/order">
+        Order Item
+      </button>
+
+      <table class="table table-hover" id="order-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Table</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="dataTable?.length === 0">
+            <td class="font-italic">
+              No item selected
+            </td>
+          </tr>
+          <tr *ngFor="let item of dataTable; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{item.table}}</td>
+            <td>{{item.totalAmount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { OrderComponent } from './order/order.component';
+import { ReportComponent } from './report/report.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'order',
+    pathMatch: 'full'
+  }, {
+    path: 'order',
+    component: OrderComponent,
+  }, {
+    path: 'report',
+    component: ReportComponent,
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

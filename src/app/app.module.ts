@@ -7,10 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DataServiceService } from './data-service.service';
+import { OrderComponent } from './order/order.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrderComponent,
+    ReportComponent
   ],
   imports: [
     FormsModule,

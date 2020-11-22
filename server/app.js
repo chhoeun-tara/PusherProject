@@ -6,6 +6,7 @@ const cors = require('cors');
 const app = express();
 
 const order = require('./routes/order');
+const report = require('./routes/report');
 
 // set public folder
 app.use(express.static(path.join(__dirname, 'src')));
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use('/order', order);
+app.use('/report', report);
 
 const port = 3000;
 

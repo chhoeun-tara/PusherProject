@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataServiceService {
-  url = 'http://localhost:3000/order';
+  url = 'http://localhost:3000';
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });
@@ -15,8 +15,13 @@ export class DataServiceService {
     private http: HttpClient
   ) { }
 
-  confirmOrder(data): Observable<any> {
-    return this.http.post(this.url, JSON.stringify(data), {
+  order(data): Observable<any> {
+    return this.http.post(this.url + '/order', JSON.stringify(data), {
+      headers: this.headers
+    });
+  }
+  report(data): Observable<any> {
+    return this.http.post(this.url + '/report', JSON.stringify(data), {
       headers: this.headers
     });
   }
